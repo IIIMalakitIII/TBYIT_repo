@@ -1,0 +1,52 @@
+<div class="pt-5" *ngIf="dataSource">
+  <h1> {{ 'Users' | translate }} </h1>
+  <br/>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-100">
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let element"> {{dataSource.indexOf(element) + 1 }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>  {{ 'Email' | translate }} </th>
+      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="userName">
+      <th mat-header-cell *matHeaderCellDef>  {{ 'UserName' | translate }}</th>
+      <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="fullName">
+      <th mat-header-cell *matHeaderCellDef>  {{ 'FullName' | translate }}</th>
+      <td mat-cell *matCellDef="let element"> {{getFullName(element)}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="role">
+      <th mat-header-cell *matHeaderCellDef>  {{ 'Role' | translate }}</th>
+      <td mat-cell *matCellDef="let element"> {{ getRoleName(element)}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>  {{ 'Delete' | translate }}</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button color="warn" (click)="deleteUser(element.id)"  [disabled]='userdeleted'>
+          <mat-icon>delete_outline</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+<div class="container pt-5" *ngIf="dataSource==null">
+<div class="d-flex justify-content-center">
+  <mat-progress-spinner
+      color="primary"
+      mode="indeterminate"
+      [diameter]="100"
+      value="70">
+  </mat-progress-spinner>
+</div>
+</div>

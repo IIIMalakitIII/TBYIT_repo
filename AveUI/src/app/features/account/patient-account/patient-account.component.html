@@ -1,0 +1,91 @@
+<br>
+<div class="row m-2">
+  <div class="col-12">
+    <mat-card [class.pane]='usePaneClass'>
+      <h2> {{ 'Patient-Info' | translate }}</h2>
+      <form [formGroup]="patientForm">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group pt-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label> {{ 'First-Name' | translate }} </mat-label>
+                    <input placeholder="Type first name..." matInput  type="text" formControlName="firstName"  [readonly]='!editable'>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group pt-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label> {{ 'Last-Name' | translate }} </mat-label>
+                    <input placeholder="Type last name ..." matInput  type="text" formControlName="lastName" [readonly]='!editable'>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group pt-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label> {{ 'Country' | translate }} </mat-label>
+                    <input placeholder="Type country..." matInput  type="text" formControlName="country"  [readonly]='!editable'>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group pt-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label> {{ 'Address' | translate }} </mat-label>
+                    <input placeholder="Type address..." matInput  type="text" formControlName="address"  [readonly]='!editable'>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group pt-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label> {{ 'Passport' | translate }} </mat-label>
+                    <input placeholder="Type passport..." matInput  type="text" formControlName="passport"  [readonly]='!editable'>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group pt-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label> {{ 'Phone' | translate }} </mat-label>
+                    <input placeholder="Type phone..." matInput  type="text" formControlName="phone"  [readonly]='!editable'>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group pt-3">
+                  <button mat-button color="accent" (click)="openDiseaseHistory(patientInfo.id)">{{ 'OpenDiseaseHistory' | translate }}</button>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group pt-3">
+                  <button mat-button color="accent" (click)="openPatientOrgan(patientInfo.id)">{{ 'OpenArtificialOrgans' | translate }}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <mat-card-actions  *ngIf="patientInfo && patientForm.touched && editable">
+        <button mat-button color="primary" (click)="onSubmit()"> {{ 'Update' | translate }}  </button>
+        <button mat-button color="warn" type="button" (click)="initForm()"> {{ 'Cancel' | translate }} </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <div class="col-12 pt-3" *ngIf='editable'>
+      <app-confidants [list]="true" [searchActive]="true"></app-confidants>
+  </div>
+</div>
+
+

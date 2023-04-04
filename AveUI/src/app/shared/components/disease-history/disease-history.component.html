@@ -1,0 +1,29 @@
+<div class="full-screen">
+  <mat-toolbar color="primary">
+    <h1>{{ 'Patient' | translate }} {{patient?.firstName}} {{patient?.lastName}} {{ 'DiseaseHistory' | translate }} </h1>
+    <span class="spacer"></span>
+    <button mat-icon-button type="button" [mat-dialog-close]="null">
+        <mat-icon color="primary">close</mat-icon>
+    </button>
+  </mat-toolbar>
+  <div class="pt-3 mx-1">
+    <div class="form-group pt-5" *ngIf="diseaseHistore">
+      <mat-form-field appearance="outline">
+        <mat-label> {{ 'Description' | translate }}  </mat-label>
+        <textarea cdkTextareaAutosize style="min-height: 100px;" [(ngModel)]="diseaseHistore.description"  matInput type="text" [readonly]="!data.editable"></textarea>
+      </mat-form-field>
+      <div class="form-group pt-2 pb-2 text-center" *ngIf="data.editable">
+        <button mat-raised-button color="primary" type="button" (click)="updateDiseaseHistory()">
+          {{ 'UpdateDisease' | translate }}
+        </button>
+      </div>
+    </div>
+    <br>
+  </div>
+  <div class="spacer"></div>
+  <div class="spacer-beetwen align-bottom  mx-2 p-4">
+    <button mat-button color="warn" type="button" [mat-dialog-close]="true">
+        {{ 'Close' | translate }}
+    </button>
+  </div>
+</div>

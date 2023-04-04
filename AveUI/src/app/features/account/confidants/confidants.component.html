@@ -1,0 +1,65 @@
+
+<div class="row">
+  <div class="col-6" *ngIf="isPatient && searchActive">
+    <mat-card>
+      <h2> {{ 'Confidant-Info' | translate }}</h2>
+      <div class="pt-3">
+          <mat-form-field appearance="outline">
+            <mat-label> {{ 'Search-Doctor' | translate }} </mat-label>
+            <input  matInput  type="text"  placeholder="Type..." [formControl]="searchControl">
+          </mat-form-field>
+          <br>
+          <ul style="list-style: none;">
+            <ng-container *ngFor="let doctor of doctorList">
+              <li>
+                <div class="row">
+                  <div class="col-md-10">
+                    {{doctor.firstName}}  {{doctor.lastName}} {{doctor.medicalInstitution.name}}
+                  </div>
+                  <div class="col-md-2">
+                    <button mat-button color="primary" (click)='addConfidant(doctor.id)'>  {{ 'Add' | translate }}     </button>
+                  </div>
+                </div>
+              </li>
+            </ng-container>
+          </ul>
+          <br>
+      </div>
+    </mat-card>
+  </div>
+  <div class="col-6" *ngIf="list">
+    <mat-card>
+      <h2> {{ 'My-Confidant-Info' | translate }}</h2>
+      <div class="pt-3">
+        <ul style="list-style: none;">
+          <ng-container *ngFor="let confidant of confidants">
+            <li *ngIf='isPatient'>
+              <div class="row">
+                <div class="col-md-10">
+                  {{confidant.doctor.name}}
+                </div>
+                <div class="col-md-2">
+                  <button mat-button color="warn" (click)='deleteConfidant(confidant.id)'>  {{ 'Delete' | translate }} </button>
+                </div>
+              </div>
+            </li>
+            <li *ngIf='!isPatient'>
+              <div class="row">
+                <div class="col-md-10">
+                  {{confidant.patient.name}}
+                </div>
+                <div class="col-md-2">
+                  <button mat-button color="primary" (click)='openPatientOrgan(confidant.patientId)'>  {{ 'Open' | translate }} </button>
+                  <button mat-button color="warn" (click)='deleteConfidant(confidant.id)'>  {{ 'Delete' | translate }} </button>
+                </div>
+              </div>
+            </li>
+          </ng-container>
+        </ul>
+      </div>
+    </mat-card>
+  </div>
+</div>
+
+
+

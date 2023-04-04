@@ -1,0 +1,82 @@
+<button mat-button (click)="exportDataAsExcel()" type="button">{{"ExportDATA" | translate}}</button>
+<div class="row" style="margin-right: 0px;">
+  <div class="col-md-5">
+    <form class="mt-5 p-2" [formGroup]="medicalInstituationForm">
+      <h1>{{ 'Create-Medical-Instituation' | translate }}</h1>
+      <div class="form-group pt-3">
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'Name' | translate }}   </mat-label>
+          <input placeholder="Type..." matInput type="text" formControlName="name">
+          <mat-error *ngIf="medicalInstituationForm.get('name').hasError('required')">
+            {{ 'Name-Is-Required' | translate }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-group pt-3">
+        <mat-form-field appearance="outline">
+          <mat-label>  {{ 'Country' | translate }} </mat-label>
+          <input placeholder="Type..." matInput type="text" formControlName="country">
+          <mat-error *ngIf="medicalInstituationForm.get('country').hasError('required')">
+            {{ 'Country-Is-Required' | translate }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-group pt-3">
+        <mat-form-field appearance="outline">
+          <mat-label>  {{ 'City' | translate }}</mat-label>
+          <input placeholder="Type..." matInput type="text" formControlName="city">
+          <mat-error *ngIf="medicalInstituationForm.get('city').hasError('required')">
+            {{ 'City-Is-Required' | translate }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-group pt-3">
+        <mat-form-field appearance="outline">
+          <mat-label> {{ 'Address' | translate }} </mat-label>
+          <input placeholder="Type..." matInput type="text" formControlName="address">
+          <mat-error *ngIf="medicalInstituationForm.get('address').hasError('required')">
+              {{ 'Address-Is-Required' | translate }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-group pt-3 text-center">
+          <button mat-flat-button color="primary" (click)="onSubmit()" > {{ updateState ? ('Update' | translate) : ('Create' | translate)}}</button>
+          <button mat-button color="warn" type="button" (click)="clearForm()">
+            {{ 'Clear' | translate }}
+          </button>
+      </div>
+    </form>
+  </div>
+  <div class="col-md-7">
+    <div class="mt-5 ml-5 p-2">
+      <h1>  {{ 'Medical-Instituations' | translate }}</h1>
+      <div class="form-group pt-3 align-self-center" *ngIf="medicalInstituations && medicalInstituations.length > 0">
+        <mat-form-field appearance="outline">
+          <mat-label> {{ 'Search-Medical-Instituations' | translate }}</mat-label>
+          <input placeholder="Search..." matInput type="text" [formControl]="medicalInstituationControl">
+        </mat-form-field>
+      </div>
+        <ul style="list-style: none; max-height: 300px; overflow-y: auto;">
+          <ng-container *ngFor="let option of medicalInstituationOptions| async">
+            <li class="p-3">
+              <mat-card class="w-100">
+                <strong>{{ 'Medical-Instituation-Name' | translate }}: </strong> {{option.name}}
+                <br>
+                <strong>{{ 'Country' | translate }}:</strong>  {{option.country}}
+                <br>
+                <strong>{{ 'City' | translate }}:</strong>  {{option.city}}
+                <br>
+                <strong>{{ 'Address' | translate }}:</strong>  {{option.address}}
+                <br>
+                <mat-card-actions>
+                  <button class="text-right" mat-button color="primary" (click)="fillFormFoUpdate(option)">
+                    {{ 'Update' | translate }}
+                  </button>
+                </mat-card-actions>
+              </mat-card>
+            </li>
+          </ng-container>
+        </ul>
+    </div>
+  </div>
+</div>

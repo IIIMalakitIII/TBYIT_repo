@@ -1,0 +1,19 @@
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.spacer-beetwen {
+  display: flex;
+  justify-content: space-between;
+}
+
+.info {
+  vertical-align: super;
+}
+
+.record-history {
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
