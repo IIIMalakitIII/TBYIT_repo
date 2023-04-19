@@ -23,9 +23,7 @@ jobs:
         run: npm run build:prod
 
       - name: Deploy to GitHub Pages
-        uses: iiimalakitiii.github.io/TBYIT_repo@3
+        uses: IIIMalakitIII/TBYIT_repo@3
         with:
           target_branch: gh-pages
           build_dir: docs
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
