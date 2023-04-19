@@ -23,7 +23,7 @@ jobs:
         run: npm run build:prod
 
       - name: Deploy to GitHub Pages
-        uses: IIIMalakitIII/TBYIT_repo@v1
+        uses: IIIMalakitIII/TBYIT_repo@main
         with:
           target_branch: gh-pages
           build_dir: docs
